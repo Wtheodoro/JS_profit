@@ -1,1 +1,1 @@
-** Just a repository dedicated to the practice of JS
+## Just a repository dedicated to the practice of JS
