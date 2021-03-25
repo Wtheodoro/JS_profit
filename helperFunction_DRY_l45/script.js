@@ -14,12 +14,13 @@ const findMaxHelper = (numbers, start) => {
 }
 
 const sortHigherWithHelper = (numbers) => {
+    // run as many times as there are items
     for (let j = 0; j < numbers.length - 1; j++) {
         
-        // find max and sorting out
+        // find max and sorting out starting from j
         let {max_number, max_index} = findMaxHelper(numbers, j)
 
-        // swap the first and the last
+        // swap the first and max item in an array
         numbers[max_index] = numbers[j]
         numbers[j] = max_number
     }
