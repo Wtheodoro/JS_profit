@@ -61,7 +61,7 @@ let movies = [
 window.onload = function() {
 
     // Display Movies list
-    displayMovies(sortMoviesByRank(movies));
+    displayMovies(sortMoviesByAttr(movies, 'id'));
 }
 
 /**
@@ -104,11 +104,55 @@ function sortMoviesByRank(movies){
           }
       }
       // swap the first and the last
-      movies[max_location] = movies[j] // --> 10
+      movies[max_location] = movies[j]
       movies[j].rank = max_rank
   }
 
   return movies
+}
+
+function sortMoviesByTitle(movies){
+    // Code from previous sortBestRatingsFirst() function
+    for (let j = 0; j < movies.length - 1; j++) {
+  
+        let max_title = movies[j].title;
+        let max_location = j;
+  
+        for (let i = j; i < movies.length; i++) {
+            if (movies[i].title > max_title) {
+                // Know max AND it's index (location)
+                max_title = movies[i].title
+                max_location = i
+            }
+        }
+        // swap the first and the last
+        movies[max_location] = movies[j]
+        movies[j].title = max_title
+    }
+  
+    return movies.reverse()
+}
+
+function sortMoviesById(movies){
+    // Code from previous sortBestRatingsFirst() function
+    for (let j = 0; j < movies.length - 1; j++) {
+  
+        let max_id = movies[j].id;
+        let max_location = j;
+  
+        for (let i = j; i < movies.length; i++) {
+            if (movies[i].id > max_id) {
+                // Know max AND it's index (location)
+                max_title = movies[i].id
+                max_location = i
+            }
+        }
+        // swap the first and the last
+        movies[max_location] = movies[j]
+        movies[j].id = max_id
+    }
+  
+    return movies.reverse()
 }
 
 /**
@@ -116,7 +160,17 @@ function sortMoviesByRank(movies){
  * @param sortAttr pass in 'id', 'title', or 'rank' to sort by
  */
 function sortMoviesByAttr(movies, sortAttr){
-  // CODE GOES HERE
+  // Sorting with .sort function
+  if (sortAttr === 'rank') {
+        sortMoviesByRank(movies)
+  } else if (sortAttr === 'title') {
+        sortMoviesByTitle(movies)   
+  } else if (sortAttr === 'id') {
+        sortMoviesById(movies)
+  } else {
+      console.log('Erro')
+  }
+  return movies
 }
 
 
